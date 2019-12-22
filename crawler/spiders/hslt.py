@@ -2,6 +2,9 @@
 import scrapy
 import time
 import random
+from scrapy.loader import ItemLoader
+from crawler.items import hsltImgItem
+
 
 class HsltSpider(scrapy.Spider):
     name = 'hslt'
@@ -39,9 +42,13 @@ class HsltSpider(scrapy.Spider):
 
     def parsepage(self,response):
         #Find all image in this page
-        imgsrcs=response.xpath("//img[@onload]/@src").getall()
-        for imgsrc in imgsrcs:
-            yield {"imgsrc":response.urljoin(imgsrc)}
+        # imgsrcs=response.xpath("//img[@onload]/@src").getall()
+        # for imgsrc in imgsrcs:
+        #     yield {"imgsrc":response.urljoin(imgsrc)}
+
+        itemLoader=ItemLoader(item=hsltImgItem(),response=response)
+        itemLoader.add_xpath('imgurl',"//img[@onload]/@src")
+        yield itemLoader.load_item()
 
         #check if there is a next page
         nextpages = response.xpath("//a[@class='p_redirect']")
