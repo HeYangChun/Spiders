@@ -19,8 +19,8 @@ class HsltImagePipeline(ImagesPipeline):
     #         headers = {'referer': item['referer']}
     #         yield Request(image_url, meta={'item': item}, headers=headers)
 
-    # def file_path(self, request, response=None, info=None):
-    #     print("in file-path...")
-    #     return "/home/andy/temp/"
-    pass
+    def file_path(self, request, response=None, info=None):
+        return request.url.replace("/","_")
+
+    # pass
 
