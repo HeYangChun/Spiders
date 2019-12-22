@@ -5,7 +5,6 @@ import random
 from scrapy.loader import ItemLoader
 from crawler.items import hsltImgItem
 
-
 class HsltSpider(scrapy.Spider):
     name = 'hslt'
 
@@ -47,7 +46,7 @@ class HsltSpider(scrapy.Spider):
         #     yield {"imgsrc":response.urljoin(imgsrc)}
 
         itemLoader=ItemLoader(item=hsltImgItem(),response=response)
-        itemLoader.add_xpath('imgurl',"//img[@onload]/@src")
+        itemLoader.add_xpath('image_urls',"//img[@onload]/@src")
         yield itemLoader.load_item()
 
         #check if there is a next page
@@ -57,5 +56,3 @@ class HsltSpider(scrapy.Spider):
             if label.find("下一页") >= 0:
                 nextpageurl = nextpage.xpath("@href").get()
                 yield response.follow(response.urljoin(nextpageurl), self.parsepage)
-
-

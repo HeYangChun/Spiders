@@ -14,6 +14,4 @@ class CrawlerItem(scrapy.Item):
     pass
 
 class hsltImgItem(scrapy.Item):
-    imgname = scrapy.Field()
-    imgsize = scrapy.Field()
-    imgurl  = scrapy.Field()
+    image_urls  = scrapy.Field()
