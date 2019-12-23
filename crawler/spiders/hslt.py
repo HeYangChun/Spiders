@@ -12,6 +12,7 @@ class HsltSpider(scrapy.Spider):
         urls=[
             'http://bbs.voc.com.cn/forum-50-1.html',
             'http://bbs.voc.com.cn/forum-22-1.html',
+            'http://bbs.voc.com.cn.forum-72-1.html',
             # 'http://bbs.voc.com.cn/topic-9086035-1-1.html'
         ]
 
