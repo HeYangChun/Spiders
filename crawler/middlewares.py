@@ -166,7 +166,7 @@ class RandomDelayDwnldMiddleware(object):
         if os.path.isfile( "".join(charlist) ):
             print("###File existed already!")
             return None
-        
+
         delay = 0.3 + random.randint(0, self.delay)
         time.sleep(delay)
 
