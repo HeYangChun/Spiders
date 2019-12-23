@@ -144,4 +144,4 @@ class UserAgentMiddleware(object):
 
     def process_request(self, request, spider):
         request.headers['User-Agent'] = random.choice(self.MY_USER_AGENTS)
-        request.headers['referer']=request.url
+        request.headers['referer'] = request.url

@@ -23,7 +23,6 @@ class HsltImagePipeline(ImagesPipeline):
         if item.get('image_urls'):
             urls = item['image_urls']
             item['image_urls']=[url for url in urls if not url.endswith(".gif")]
-            #print("Item :{}".format(item['image_urls']))
             return ImagesPipeline.process_item(self,item,spider)
         else:
             raise DropItem("Invalid Item")
