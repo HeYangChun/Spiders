@@ -47,6 +47,7 @@ class HsltSpider(scrapy.Spider):
 
         itemLoader=ItemLoader(item=hsltImgItem(),response=response)
         itemLoader.add_xpath('image_urls',"//img[@onload]/@src")
+        itemLoader.add_value("page_url",response.url)
         yield itemLoader.load_item()
 
         #check if there is a next page
