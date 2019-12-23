@@ -41,8 +41,11 @@ def begindownload():
             continue
 
         print("downloading  %d/%d: %s ..." % (cnt,len(lsttobedownload),obj))
-        sys.argv=["you-get","-o","/home/andy/temp/zipai",obj]
-        you_get.main()
+        try:
+            sys.argv=["you-get","-o","/home/andy/temp/zipai",obj]
+            you_get.main()
+        except Exception as except:
+            print("Failed, info:{}".format(except)
         # time.sleep(random.random()*2)
         lstdownloaded.append(obj)
 
