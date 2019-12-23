@@ -29,7 +29,10 @@ class HsltImagePipeline(ImagesPipeline):
             raise DropItem("Invalid Item")
 
     def file_path(self, request, response=None, info=None):
-        return request.url.replace("/","_")
-
-    # pass
-
+        filename = request.url.replace("/","")
+        filename = filename.replace(":","")
+        filename = filename.replace(".","")
+        ls = list(filename)
+        ls.insert(-3,'.')
+        filename = "".join(ls)
+        return filename
