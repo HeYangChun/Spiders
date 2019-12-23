@@ -68,7 +68,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    # 'crawler.pipelines.CrawlerPipeline': 300,
-    'crawler.pipelines.HsltImagePipeline': 300,
+    'crawler.pipelines.HsltImagePipeline': 500,
 }
 IMAGES_STORE = "/home/andy/temp/"
 # Enable and configure the AutoThrottle extension (disabled by default)
