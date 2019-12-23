@@ -56,6 +56,7 @@ ROBOTSTXT_OBEY = False
 DOWNLOADER_MIDDLEWARES = {
    # 'crawler.middlewares.CrawlerDownloaderMiddleware': 543,
     'crawler.middlewares.UserAgentMiddleware': 400,
+    'crawler.middlewares.RandomDelayDwnldMiddleware': 420,
 }
 
 # Enable or disable extensions
@@ -91,3 +92,4 @@ IMAGES_STORE = "/home/andy/temp/"
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+RANDOM_DELAY = 3

@@ -7,6 +7,8 @@
 
 from scrapy import signals
 import random
+import time
+import os
 
 class CrawlerSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -145,3 +147,28 @@ class UserAgentMiddleware(object):
     def process_request(self, request, spider):
         request.headers['User-Agent'] = random.choice(self.MY_USER_AGENTS)
         request.headers['referer'] = request.url
+
+
+class RandomDelayDwnldMiddleware(object):
+    def __init__(self,delay):
+        self.delay = delay
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        delay = crawler.spider.settings.get("RANDOM_DELAY", 10)
+        if not isinstance(delay, int):
+            raise ValueError("RANDOM_DELAY need a int")
+        return cls(delay)
+
+    def process_request(self, request, spider):
+        charlist = list(request.url.replace("/", "").replace(":", "").replace(".", ""))
+        charlist.insert(-3, '.')
+        if os.path.isfile( "".join(charlist) ):
+            print("###File existed already!")
+            return None
+        
+        delay = 0.3 + random.randint(0, self.delay)
+        time.sleep(delay)
+
+
+

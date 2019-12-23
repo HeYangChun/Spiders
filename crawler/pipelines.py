@@ -31,3 +31,4 @@ class HsltImagePipeline(ImagesPipeline):
         charlist =list( request.url.replace("/","").replace(":","").replace(".","") )
         charlist.insert(-3,'.')
         return  "".join(charlist)
+

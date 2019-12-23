@@ -11,23 +11,23 @@ class HsltSpider(scrapy.Spider):
     def start_requests(self):
         urls=[
             'http://bbs.voc.com.cn/forum-50-1.html',
-            'http://bbs.voc.com.cn/forum-22-1.html',
-            'http://bbs.voc.com.cn.forum-72-1.html',
+            #'http://bbs.voc.com.cn/forum-22-1.html',
+            #'http://bbs.voc.com.cn.forum-72-1.html',
             # 'http://bbs.voc.com.cn/topic-9086035-1-1.html'
         ]
 
         for url in urls:
             yield scrapy.Request(url=url,callback=self.parsepagelist)
 
-    def __takearest(self):
-        time.sleep(random.random()*3)
+    # def __takearest(self):
+    #     time.sleep(random.random()*3)
 
     def parsepagelist(self, response):
         #find all subpage in the list
         for pgselector in response.xpath("//a[@href][@class][@title]"):
             subpagelink = pgselector.xpath("@href").get()
             #parse page
-            self.__takearest()
+            # self.__takearest()
             yield response.follow(response.urljoin(subpagelink), self.parsepage)
 
         #find next page:
@@ -36,7 +36,7 @@ class HsltSpider(scrapy.Spider):
             label=nextpage.xpath("text()").get()
             if label.find("下一页") >= 0:
                 nextpageurl = nextpage.xpath("@href").get()
-                self.__takearest()
+                # self.__takearest()
                 yield response.follow(response.urljoin(nextpageurl), self.parsepagelist)
 
 
