@@ -155,10 +155,7 @@ class RandomDelayDwnldMiddleware(object):
 
     @classmethod
     def from_crawler(cls, crawler):
-        delay = crawler.spider.settings.get("RANDOM_DELAY", 10)
-        if not isinstance(delay, int):
-            raise ValueError("RANDOM_DELAY need a int")
-        return cls(delay)
+        return cls(5)
 
     def process_request(self, request, spider):
         charlist = list(request.url.replace("/", "").replace(":", "").replace(".", ""))
@@ -169,7 +166,7 @@ class RandomDelayDwnldMiddleware(object):
             return None
 
         print("$$$ Take a rest before request:%s" % request.url)
-        delay = 0.3 + random.randint(0, self.delay)
+        delay = 0.182 + random.randint(0, self.delay)
         time.sleep(delay)
 
 
