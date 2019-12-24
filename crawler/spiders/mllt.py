@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import scrapy
-
+import time
+import random
+from scrapy.loader import ItemLoader
+from crawler.items import hsltImgItem
 
 class MlltSpider(scrapy.Spider):
     name = 'mllt'
