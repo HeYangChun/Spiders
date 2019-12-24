@@ -163,10 +163,12 @@ class RandomDelayDwnldMiddleware(object):
     def process_request(self, request, spider):
         charlist = list(request.url.replace("/", "").replace(":", "").replace(".", ""))
         charlist.insert(-3, '.')
-        if os.path.isfile( "".join(charlist) ):
-            print("###File existed already!")
+        filename = "".join(charlist)
+        if os.path.isfile( filename ):
+            print("$$$ File %s existed already!" % filename )
             return None
 
+        print("$$$ Take a rest before request:%s" % request.url)
         delay = 0.3 + random.randint(0, self.delay)
         time.sleep(delay)
 
