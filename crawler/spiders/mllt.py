@@ -14,7 +14,7 @@ class MlltSpider(scrapy.Spider):
         ]
         
         data={
-            'mod':"forumdisplay",
+            'mod':'forumdisplay',
             'fid':'17',
             'filter':'typeid',
             'typeid':'1094',
@@ -24,6 +24,11 @@ class MlltSpider(scrapy.Spider):
             yield  scrapy.FormRequest(url=url,formdata=data,callback=self.parsepagelist)
 
     def parsepagelist(self, response):
+        #BGN:TEST
+        #subpagelink = response.xpath("//a[@class='s xst']")[8].xpath("@href").get()
+        #yield response.follow(response.urljoin(subpagelink), self.parsepage)
+        #return
+        #END:TEST
         #find all subpage in the list
         for pgselector in response.xpath("//a[@class='s xst']"):
             subpagelink = pgselector.xpath("@href").get()
@@ -43,6 +48,7 @@ class MlltSpider(scrapy.Spider):
         #find all images
         itemLoader=ItemLoader(item=LtImgItem(),response=response)
         itemLoader.add_xpath('image_urls',"//img[@aid]/@src")
+        itemLoader.add_xpath('image_urls',"//img[@onclick and @class='zoom']/@src")
         itemLoader.add_value("page_url",response.url)
         yield itemLoader.load_item()
 
