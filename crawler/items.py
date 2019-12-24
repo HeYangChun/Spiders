@@ -13,6 +13,6 @@ class CrawlerItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
-class hsltImgItem(scrapy.Item):
+class LtImgItem(scrapy.Item):
     page_url    = scrapy.Field()
     image_urls  = scrapy.Field()

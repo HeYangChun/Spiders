@@ -3,7 +3,7 @@ import scrapy
 import time
 import random
 from scrapy.loader import ItemLoader
-from crawler.items import hsltImgItem
+from crawler.items import LtImgItem
 
 class MlltSpider(scrapy.Spider):
     name = 'mllt'
@@ -41,7 +41,7 @@ class MlltSpider(scrapy.Spider):
 
     def parsepage(self,response):
         #find all images
-        itemLoader=ItemLoader(item=hsltImgItem(),response=response)
+        itemLoader=ItemLoader(item=LtImgItem(),response=response)
         itemLoader.add_xpath('image_urls',"//img[@aid]/@src")
         itemLoader.add_value("page_url",response.url)
         yield itemLoader.load_item()

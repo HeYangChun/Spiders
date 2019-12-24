@@ -3,7 +3,7 @@ import scrapy
 import time
 import random
 from scrapy.loader import ItemLoader
-from crawler.items import hsltImgItem
+from crawler.items import LtImgItem
 
 class HsltSpider(scrapy.Spider):
     name = 'hslt'
@@ -46,7 +46,7 @@ class HsltSpider(scrapy.Spider):
         # for imgsrc in imgsrcs:
         #     yield {"imgsrc":response.urljoin(imgsrc)}
 
-        itemLoader=ItemLoader(item=hsltImgItem(),response=response)
+        itemLoader=ItemLoader(item=LtImgItem(),response=response)
         itemLoader.add_xpath('image_urls',"//img[@onload]/@src")
         itemLoader.add_value("page_url",response.url)
         yield itemLoader.load_item()
