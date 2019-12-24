@@ -13,7 +13,7 @@ class CrawlerPipeline(object):
         return item
 
 
-class HsltImagePipeline(ImagesPipeline):
+class LtImagePipeline(ImagesPipeline):
     # def get_media_requests(self, item, info):
     #     print("in get_media_requests")
     #     for image_url in item['image_urls']:
