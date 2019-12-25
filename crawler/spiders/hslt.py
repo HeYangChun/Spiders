@@ -26,8 +26,14 @@ class HsltSpider(scrapy.Spider):
         #find all subpage in the list
         for pgselector in response.xpath("//a[@href][@class][@title]"):
             subpagelink = pgselector.xpath("@href").get()
-            #parse page
-            # self.__takearest()
+            #Filter page link that had been accessed
+            if self.__isthisaccessed(subpagelink):
+                print("Page had been accessed:%s" % subpagelink)
+                continue
+
+            #parse pagea
+            self.__markthisasaccessed(subpagelink)
+            #get it
             yield response.follow(response.urljoin(subpagelink), self.parsepage)
 
         #find next page:
@@ -58,3 +64,9 @@ class HsltSpider(scrapy.Spider):
             if label.find("下一页") >= 0:
                 nextpageurl = nextpage.xpath("@href").get()
                 yield response.follow(response.urljoin(nextpageurl), self.parsepage)
+    
+    def __isthisaccessed(self,url):
+        return False
+
+    def __markthisasaccessed(self,url):
+        pass
