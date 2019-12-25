@@ -155,18 +155,19 @@ class RandomDelayDwnldMiddleware(object):
 
     @classmethod
     def from_crawler(cls, crawler):
-        return cls(5)
+        delay = crawler.spider.settings.get("RANDOM_DELAY", 10)
+        if not isinstance(delay, int):
+            raise ValueError("RANDOM_DELAY need a int")
+        return cls(delay)
 
     def process_request(self, request, spider):
         charlist = list(request.url.replace("/", "").replace(":", "").replace(".", ""))
         charlist.insert(-3, '.')
-        filename = "".join(charlist)
-        if os.path.isfile( filename ):
-            print("$$$ File %s existed already!" % filename )
+        if os.path.isfile( "".join(charlist) ):
+            print("###File existed already!")
             return None
 
-        print("$$$ Take a rest before request:%s" % request.url)
-        delay = 0.182 + random.randint(0, self.delay)
+        delay = 0.3 + random.randint(0, self.delay)
         time.sleep(delay)
 
 
