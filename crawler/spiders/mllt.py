@@ -10,29 +10,29 @@ class MlltSpider(scrapy.Spider):
     name = 'mllt'
 
     def start_requests(self):
-        if True:
-            #Directly access
-            urls=[
-                'https://www.mala.cn/forum.php?mod=forumdisplay&fid=17&filter=typeid&typeid=1094'
-            ]
+        #if True:
+        #Directly access
+        urls=[
+            'https://www.mala.cn/forum.php?mod=forumdisplay&fid=17&filter=typeid&typeid=1094'
+        ]
 
-            for url in urls:
-                yield scrapy.Request(url=url,callback=self.parsepagelist)
-        else:
+        for url in urls:
+            yield scrapy.Request(url=url,callback=self.parsepagelist)
+        #else:
             #Post a request
-            urls=[
-                'https://www.mala.cn/forum.php',
-            ]
+        #    urls=[
+        #        'https://www.mala.cn/forum.php',
+        #    ]
         
-            data={
-                'mod':'forumdisplay',
-                'fid':'17',
-                'filter':'typeid',
-                'typeid':'1094',
-            }
+        #    data={
+        #        'mod':'forumdisplay',
+        #        'fid':'17',
+        #        'filter':'typeid',
+        #        'typeid':'1094',
+        #    }
 
-            for url in urls:
-                yield  scrapy.FormRequest(url=url,formdata=data,callback=self.parsepagelist)
+        #    for url in urls:
+        #        yield  scrapy.FormRequest(url=url,formdata=data,callback=self.parsepagelist)
 
 
     def parsepagelist(self, response):
