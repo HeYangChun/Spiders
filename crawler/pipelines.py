@@ -27,8 +27,8 @@ class LtImagePipeline(ImagesPipeline):
         else:
             raise DropItem("Invalid Item")
 
-    #def file_path(self, request, response=None, info=None):
-    #    charlist =list( request.url.replace("/","").replace(":","").replace(".","") )
-    #    charlist.insert(-3,'.')
-    #    return  "".join(charlist)
+    def file_path(self, request, response=None, info=None):
+       charlist =list( request.url.replace("/","").replace(":","").replace(".","") )
+       charlist.insert(-3,'.')
+       return  "".join(charlist)
 
