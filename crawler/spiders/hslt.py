@@ -2,13 +2,22 @@
 import scrapy
 import time
 import random
+import os
 from scrapy.loader import ItemLoader
 from crawler.items import LtImgItem
+import crawler.utilities as utilities
+
 
 class HsltSpider(scrapy.Spider):
     name = 'hslt'
+    flnmLogURLAccessed="urlaccessedurl_hslt.txt"
+    fileLogURLAccessed = os.getcwd() + "/" + flnmLogURLAccessed
+    urlAccessed=[]
 
     def start_requests(self):
+        self.urlAccessed = utilities.readFile(self.fileLogURLAccessed)
+        print("file log access %s cnt:%d" % (self.fileLogURLAccessed, len(self.urlAccessed) ))
+
         urls=[
             'http://bbs.voc.com.cn/forum-50-1.html',
             #'http://bbs.voc.com.cn/forum-22-1.html',
@@ -33,6 +42,7 @@ class HsltSpider(scrapy.Spider):
 
             #parse pagea
             self.__markthisasaccessed(subpagelink)
+
             #get it
             yield response.follow(response.urljoin(subpagelink), self.parsepage)
 
@@ -66,7 +76,8 @@ class HsltSpider(scrapy.Spider):
                 yield response.follow(response.urljoin(nextpageurl), self.parsepage)
     
     def __isthisaccessed(self,url):
-        return False
+        return url in self.urlAccessed
 
     def __markthisasaccessed(self,url):
-        pass
+        self.urlAccessed.append(url)
+        utilities.fileAppend(self.fileLogURLAccessed, url)
