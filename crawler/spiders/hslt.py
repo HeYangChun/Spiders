@@ -16,7 +16,6 @@ class HsltSpider(scrapy.Spider):
 
     def start_requests(self):
         self.urlAccessed = utilities.readFile(self.fileLogURLAccessed)
-        print("file log access %s cnt:%d" % (self.fileLogURLAccessed, len(self.urlAccessed) ))
 
         urls=[
             'http://bbs.voc.com.cn/forum-50-1.html',
