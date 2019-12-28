@@ -53,6 +53,7 @@ class HsltSpider(scrapy.Spider):
                 nextpageurl = nextpage.xpath("@href").get()
                 # self.__takearest()
                 yield response.follow(response.urljoin(nextpageurl), self.parsepagelist)
+                break
 
 
     def parsepage(self,response):

@@ -45,7 +45,7 @@ class MlltSpider(scrapy.Spider):
            if label.find("下一页") >= 0:
                nextpageurl = nextpage.xpath("@href").get()
                yield response.follow(response.urljoin(nextpageurl), self.parsepagelist)
-
+               break
 
     def parsepage(self,response):
         #find all images
