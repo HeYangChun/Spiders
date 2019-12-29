@@ -6,6 +6,7 @@
 # https://doc.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from scrapy.loader.processors import MapCompose
 
 
 class CrawlerItem(scrapy.Item):
@@ -16,3 +17,16 @@ class CrawlerItem(scrapy.Item):
 class LtImgItem(scrapy.Item):
     page_url    = scrapy.Field()
     image_urls  = scrapy.Field()
+
+def removeSlashes(url):
+    print("removeSlashes url:%s" % url)
+    if url.startswith("//"):
+        return "https:" + url
+    else:
+        return url
+
+class TpyLtImgItem(scrapy.Item):
+    page_url    = scrapy.Field()
+    image_urls  = scrapy.Field(
+        input_processor = MapCompose(removeSlashes)
+    )
