@@ -14,18 +14,25 @@ class CrawlerItem(scrapy.Item):
     # name = scrapy.Field()
     pass
 
+
 class LtImgItem(scrapy.Item):
+
     page_url    = scrapy.Field()
     image_urls  = scrapy.Field()
 
+
 def removeSlashes(url):
-    print("removeSlashes url:%s" % url)
+
     if url.startswith("//"):
-        return "https:" + url
-    else:
-        return url
+        url = "https:" + url
+
+    url = url.replace("_mthumb","")
+
+    return url
+
 
 class TpyLtImgItem(scrapy.Item):
+
     page_url    = scrapy.Field()
     image_urls  = scrapy.Field(
         input_processor = MapCompose(removeSlashes)
