@@ -14,11 +14,7 @@ class CrawlerPipeline(object):
 
 
 class LtImagePipeline(ImagesPipeline):
-    # def get_media_requests(self, item, info):
-    #     print("in get_media_requests")
-    #     for image_url in item['image_urls']:
-    #         headers = {'referer': item['referer']}
-    #         yield Request(image_url, meta={'item': item}, headers=headers)
+
     def process_item(self,item,spider):
         if item.get('image_urls'):
             urls = item['image_urls']
@@ -27,6 +23,7 @@ class LtImagePipeline(ImagesPipeline):
         else:
             raise DropItem("Invalid Item")
 
+    #interface to rename the file downloaded
     def file_path(self, request, response=None, info=None):
        charlist =list( request.url.replace("/","").replace(":","").replace(".","") )
        charlist.insert(-3,'.')

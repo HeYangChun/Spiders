@@ -22,7 +22,7 @@ class LtImgItem(scrapy.Item):
 
 
 def removeSlashes(url):
-
+    #Only for image link in Pacific photo forum
     if url.startswith("//"):
         url = "https:" + url
 

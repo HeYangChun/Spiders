@@ -31,9 +31,6 @@ class HsltSpider(scrapy.Spider):
         for url in urls:
             yield scrapy.Request(url=url,callback=self.parsepagelist)
 
-    # def __takearest(self):
-    #     time.sleep(random.random()*3)
-
     def parsepagelist(self, response):
         #find all subpage in the list
         for pgselector in response.xpath("//a[@href][@class][@title]"):
@@ -69,9 +66,6 @@ class HsltSpider(scrapy.Spider):
 
     def parsepage(self,response):
         #Find all image in this page
-        # imgsrcs=response.xpath("//img[@onload]/@src").getall()
-        # for imgsrc in imgsrcs:
-        #     yield {"imgsrc":response.urljoin(imgsrc)}
 
         itemLoader=ItemLoader(item=LtImgItem(),response=response)
         itemLoader.add_xpath('image_urls',"//img[@onload]/@src")

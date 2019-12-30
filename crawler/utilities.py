@@ -3,7 +3,6 @@ import os
 
 def fileAppend(file, content):
     with open(file,"a") as fw:
-        # fw.read()
         fw.write(content+"\n")
 
 def readFile(file):
