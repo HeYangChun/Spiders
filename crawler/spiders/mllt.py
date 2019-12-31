@@ -13,6 +13,9 @@ class MlltSpider(scrapy.Spider):
     flnmLogURLAccessed="urlaccessedurl_mllt.txt"
     fileLogURLAccessed = os.getcwd() + "/" + flnmLogURLAccessed
     urlAccessed=[]
+    custom_settings = {
+        "IMAGES_STORE": "/home/andy/workspace/picsfrmnetmllt_temp"
+    }
 
     def start_requests(self):
         self.urlAccessed = utilities.readFile(self.fileLogURLAccessed)

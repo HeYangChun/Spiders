@@ -16,6 +16,10 @@ class HsltSpider(scrapy.Spider):
     crawlAll = False
     cntoflstpgcrawled = 0
 
+    custom_settings={
+        "IMAGES_STORE" : "/home/andy/workspace/picsfrmnethslt_temp"
+    }
+
     def start_requests(self):
         self.urlAccessed = utilities.readFile(self.fileLogURLAccessed)
         self.crawlAll = ( len(self.urlAccessed) <= 0 )

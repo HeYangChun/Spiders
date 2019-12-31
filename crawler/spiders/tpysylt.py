@@ -13,6 +13,9 @@ class TpysyltSpider(scrapy.Spider):
     flnmLogURLAccessed = "urlaccessedurl_tpysylt.txt"
     fileLogURLAccessed = os.getcwd() + "/" + flnmLogURLAccessed
     urlAccessed = []
+    custom_settings = {
+        "IMAGES_STORE": "/home/andy/workspace/picsfrmnettpysylt_temp"
+    }
 
     def start_requests(self):
         self.urlAccessed = utilities.readFile(self.fileLogURLAccessed)
