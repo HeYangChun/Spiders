@@ -13,12 +13,16 @@ class MlltSpider(scrapy.Spider):
     flnmLogURLAccessed="urlaccessedurl_mllt.txt"
     fileLogURLAccessed = os.getcwd() + "/" + flnmLogURLAccessed
     urlAccessed=[]
+    crawlAll = False
+    cntoflstpgcrawled = 0
+
     custom_settings = {
         "IMAGES_STORE": "/home/andy/workspace/picsfrmnetmllt_temp"
     }
 
     def start_requests(self):
         self.urlAccessed = utilities.readFile(self.fileLogURLAccessed)
+        self.crawlAll = ( len(self.urlAccessed) <= 0 )
 
         urls=[
             'https://www.mala.cn/forum.php?mod=forumdisplay&fid=17&filter=typeid&typeid=1094'
@@ -47,6 +51,14 @@ class MlltSpider(scrapy.Spider):
            label=nextpage.xpath("text()").get()
            if label.find("下一页") >= 0:
                nextpageurl = nextpage.xpath("@href").get()
+
+                # check if all pages are needed to be crawled
+                self.cntoflstpgcrawled = self.cntoflstpgcrawled + 1
+                if not self.crawlAll:
+                    if self.cntoflstpgcrawled >= 10:
+                        print("pages enough for updating!")
+                        break
+
                yield response.follow(response.urljoin(nextpageurl), self.parsepagelist)
                break
 

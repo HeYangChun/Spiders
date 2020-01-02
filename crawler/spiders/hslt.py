@@ -23,13 +23,11 @@ class HsltSpider(scrapy.Spider):
     def start_requests(self):
         self.urlAccessed = utilities.readFile(self.fileLogURLAccessed)
         self.crawlAll = ( len(self.urlAccessed) <= 0 )
-        print( "crawl all: {}".format(self.crawlAll) )
 
         urls=[
             'http://bbs.voc.com.cn/forum-50-1.html',
             #'http://bbs.voc.com.cn/forum-22-1.html',
             #'http://bbs.voc.com.cn.forum-72-1.html',
-            # 'http://bbs.voc.com.cn/topic-9086035-1-1.html'
         ]
 
         for url in urls:
@@ -61,7 +59,7 @@ class HsltSpider(scrapy.Spider):
                 self.cntoflstpgcrawled = self.cntoflstpgcrawled + 1
                 if not self.crawlAll:
                     if self.cntoflstpgcrawled >= 10:
-                        print("2 pages enough for updating!")
+                        print("pages enough for updating!")
                         break
 
                 yield response.follow(response.urljoin(nextpageurl), self.parsepagelist)

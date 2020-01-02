@@ -13,12 +13,16 @@ class TpysyltSpider(scrapy.Spider):
     flnmLogURLAccessed = "urlaccessedurl_tpysylt.txt"
     fileLogURLAccessed = os.getcwd() + "/" + flnmLogURLAccessed
     urlAccessed = []
+    crawlAll = False
+    cntoflstpgcrawled = 0
+
     custom_settings = {
         "IMAGES_STORE": "/home/andy/workspace/picsfrmnettpysylt_temp"
     }
 
     def start_requests(self):
         self.urlAccessed = utilities.readFile(self.fileLogURLAccessed)
+        self.crawlAll = ( len(self.urlAccessed) <= 0 )
 
         urls = [
             'https://itbbs.pconline.com.cn/dc/f2312647.html/',
@@ -51,14 +55,18 @@ class TpysyltSpider(scrapy.Spider):
             label = nextpage.xpath("text()").get()
             if label.find("下一页") >= 0:
                 nextpageurl = nextpage.xpath("@href").get()
+
+                # check if all pages are needed to be crawled
+                self.cntoflstpgcrawled = self.cntoflstpgcrawled + 1
+                if not self.crawlAll:
+                    if self.cntoflstpgcrawled >= 10:
+                        print("pages enough for updating!")
+                        break
+
                 yield response.follow(response.urljoin(nextpageurl), self.parsepagelist)
                 break
 
     def parsepage(self, response):
-        # Find all image in this page
-        # imgsrcs=response.xpath("//img[@onload]/@src").getall()
-        # for imgsrc in imgsrcs:
-        #     yield {"imgsrc":response.urljoin(imgsrc)}
 
         itemLoader = ItemLoader(item=TpyLtImgItem(), response=response)
         itemLoader.add_xpath('image_urls', "//img/@src2")
