@@ -52,12 +52,12 @@ class MlltSpider(scrapy.Spider):
            if label.find("下一页") >= 0:
                nextpageurl = nextpage.xpath("@href").get()
 
-                # check if all pages are needed to be crawled
-                self.cntoflstpgcrawled = self.cntoflstpgcrawled + 1
-                if not self.crawlAll:
-                    if self.cntoflstpgcrawled >= 10:
-                        print("pages enough for updating!")
-                        break
+               # check if all pages are needed to be crawled
+               self.cntoflstpgcrawled = self.cntoflstpgcrawled + 1
+               if not self.crawlAll:
+                   if self.cntoflstpgcrawled >= 10:
+                       print("pages enough for updating!")
+                       break
 
                yield response.follow(response.urljoin(nextpageurl), self.parsepagelist)
                break

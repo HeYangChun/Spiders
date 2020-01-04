@@ -12,3 +12,33 @@ def readFile(file):
     with open(file,"r") as fr:
         #last is a "\n", remove it
         return [ str[0:-1] for str in list(fr) ]
+
+def convert2Filename(url):
+    specialChar=['~',
+                 '`',
+                 '!',
+                 '@',
+                 '#',
+                 '$',
+                 '%',
+                 '^',
+                 '&',
+                 '*',
+                 '(',
+                 ')',
+                 '|',
+                 '\\',
+                 ',',
+                 '/',
+                 '?',
+                 ':',
+                 ';',
+                 '"',
+                 '<',
+                 '>',
+                 '.',
+                 ]
+    for sc in specialChar:
+        url=url.replace(sc,"")
+
+    return url
