@@ -1,5 +1,5 @@
 import os
-
+import sys
 
 def fileAppend(file, content):
     with open(file,"a") as fw:
@@ -56,12 +56,19 @@ def cntfilesinfolder(folder):
             
         if os.path.isdir(file):
             cntfolders = cntfolders + 1
-            print("file:{}".format(file))
             (tcntfile,tcntfolder) = cntfilesinfolder(file)
             cntfiles = cntfiles + tcntfile
             cntfolders = cntfolders + tcntfolder
     
     return (cntfiles,cntfolders)
 
-#if __name__ == "__main__":
-    #print(cntfilesinfolder("/home/andy/temp/temp"))
+
+if __name__ == "__main__":
+    
+    if len(sys.argv) <= 1:
+        print("please input objective folder")
+        exit()
+        
+    folder =  sys.argv[1]
+    (filecnt,foldercnt) = cntfilesinfolder(folder)
+    print("%d files and %d folders in %s" % (filecnt,foldercnt,folder))
