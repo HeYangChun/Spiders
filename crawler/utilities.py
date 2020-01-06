@@ -43,14 +43,19 @@ def convert2Filename(url):
 
     return url
 
-def countFilesInFolder(folder):
-    files = os.listdir(folder)
-    cntfile = 0
-    cntfolder = 0
+def cntfiles(folder):
+    files =  os.listdir(folder)
+    cntfiles = 0
+    cntfolders = 0
+    
     for file in files:
+        file = os.path.join(folder, file)
+        if os.path.isfile(file):
+            cntfiles = cntfiles + 1
         if os.path.isdir(file):
-            cntfolder = cntfolder + 1
-        else if os.path.isfile(file):
-            cntfile = cntfile + 1
-    return (cntfile,cntfolder)
-        
+            tcntfile,tcntfolder=cntfiles(file)
+            cntfiles = cntfiles + tcntfile
+            cntfolders = cntfolders + tcntfolder
+
+    return (cntfiles,cntfolders)
+
