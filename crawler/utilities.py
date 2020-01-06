@@ -42,3 +42,15 @@ def convert2Filename(url):
         url=url.replace(sc,"")
 
     return url
+
+def countFilesInFolder(folder):
+    files = os.listdir(folder)
+    cntfile = 0
+    cntfolder = 0
+    for file in files:
+        if os.path.isdir(file):
+            cntfolder = cntfolder + 1
+        else if os.path.isfile(file):
+            cntfile = cntfile + 1
+    return (cntfile,cntfolder)
+        
