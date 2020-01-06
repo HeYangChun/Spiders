@@ -43,19 +43,25 @@ def convert2Filename(url):
 
     return url
 
-def cntfiles(folder):
+
+def cntfilesinfolder(folder):
     files =  os.listdir(folder)
     cntfiles = 0
     cntfolders = 0
-    
+   
     for file in files:
         file = os.path.join(folder, file)
         if os.path.isfile(file):
             cntfiles = cntfiles + 1
+            
         if os.path.isdir(file):
-            tcntfile,tcntfolder=cntfiles(file)
+            cntfolders = cntfolders + 1
+            print("file:{}".format(file))
+            (tcntfile,tcntfolder) = cntfilesinfolder(file)
             cntfiles = cntfiles + tcntfile
             cntfolders = cntfolders + tcntfolder
-
+    
     return (cntfiles,cntfolders)
 
+#if __name__ == "__main__":
+    #print(cntfilesinfolder("/home/andy/temp/temp"))
