@@ -18,6 +18,7 @@ class MlltSpider(scrapy.Spider):
 
     custom_settings = {
         "IMAGES_STORE" : "/home/andy/workspace/picsfrmnetmllt_temp",
+        "RANDOM_DELAY" : 3,
     }
 
     def start_requests(self):
