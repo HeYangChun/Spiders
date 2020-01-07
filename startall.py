@@ -1,9 +1,9 @@
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
-from crawler.qqmail import QQMail
-from crawler.spiders.hslt import HsltSpider
-from crawler.spiders.mllt import MlltSpider
-from crawler.spiders.tpysylt import TpysyltSpider
+from crawlers.qqmail import QQMail
+from crawlers.spiders.hslt import HsltSpider
+from crawlers.spiders.mllt import MlltSpider
+from crawlers.spiders.tpysylt import TpysyltSpider
 
 process = CrawlerProcess(get_project_settings())
 #spiders to crawl
