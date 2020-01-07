@@ -62,21 +62,20 @@ class QQMail(object):
 
         return self._sendMail(receivers,message)
 
+if __name__ == "__main__":
+    mail = QQMail("yangchun_he@qq.com","snbtdhhcsrxhdbdc")
+    subject = "Message from Andy's robot"
+    to = ["2388464282@qq.com"]
+    content = "Hello, \nI am Andy's robot! i have a message to let you know:\n..."    
+    if mail.sendTextMail(to,subject,content):
+        print("text mail send successfully!")
 
-# How to use?
-# mail = QQMail("yangchun_he@qq.com","snbtdhhcsrxhdbdc")
-# subject = "Message from Andy's robot"
-# to = ["2388464282@qq.com"]
-# content = "Hello, \nI am Andy's robot! i have a message to let you know:\n..."
-# html = """
-# <a href="https://www.toutiao.com/group/6765296455344194052/" target="_blank" class="link">狮子与老虎为何宁愿饿死，也不敢去碰熊猫？看看熊猫在上古时叫啥</a>
-# """
-#
-# if mail.sendTextMail(to,subject,content):
-#     print("Succeed!")
-#
-# if mail.sendHtmlMail(to,subject,html):
-#     print("Succeed!")
-#
-# if mail.sendMailWithAttachment(to,subject,text,attachments):
-#     print("succeed")
+    #html = """
+    #<a href="https://www.toutiao.com/group/6765296455344194052/" target="_blank" class="link">狮子与老虎为何宁愿饿死，也不敢去碰熊猫？看看熊猫在上古时叫啥</a>
+    #"""
+    #
+    #if mail.sendHtmlMail(to,subject,html):
+    #    print("html mail send successfully!")
+    #
+    #if mail.sendMailWithAttachment(to,subject,text,attachments):
+    #    print("mail with attachment send successfully!")
