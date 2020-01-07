@@ -8,7 +8,7 @@ from scrapy.pipelines.images import ImagesPipeline
 from scrapy.http import Request
 from scrapy.exceptions import DropItem
 import scrapy
-import crawler.utilities as utilities
+import crawlers.utilities as utilities
 
 
 class CrawlerPipeline(object):

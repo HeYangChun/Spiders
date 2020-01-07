@@ -4,8 +4,8 @@ import time
 import random
 import os
 from scrapy.loader import ItemLoader
-from crawler.items import LtImgItem
-import crawler.utilities as utilities
+from crawlers.items import LtImgItem
+import crawlers.utilities as utilities
 
 
 class HsltSpider(scrapy.Spider):

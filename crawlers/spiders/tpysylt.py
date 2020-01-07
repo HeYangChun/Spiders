@@ -4,8 +4,8 @@ import time
 import random
 import os
 from scrapy.loader import ItemLoader
-from crawler.items import TpyLtImgItem
-import crawler.utilities as utilities
+from crawlers.items import TpyLtImgItem
+import crawlers.utilities as utilities
 
 
 class TpysyltSpider(scrapy.Spider):
