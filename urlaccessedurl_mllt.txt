@@ -7995,3 +7995,6 @@ https://www.mala.cn/forum.php?mod=viewthread&tid=15549503&extra=page%3D9%26filte
 https://www.mala.cn/forum.php?mod=viewthread&tid=15493169&extra=page%3D10%26filter%3Dtypeid%26typeid%3D1094
 https://www.mala.cn/forum.php?mod=viewthread&tid=15499873&extra=page%3D10%26filter%3Dtypeid%26typeid%3D1094
 https://www.mala.cn/forum.php?mod=viewthread&tid=14416060&extra=page%3D10%26filter%3Dtypeid%26typeid%3D1094
+https://www.mala.cn/forum.php?mod=viewthread&tid=15835804&extra=page%3D1%26filter%3Dtypeid%26typeid%3D1094
+https://www.mala.cn/forum.php?mod=viewthread&tid=15835217&extra=page%3D1%26filter%3Dtypeid%26typeid%3D1094
+https://www.mala.cn/forum.php?mod=viewthread&tid=15836470&extra=page%3D1%26filter%3Dtypeid%26typeid%3D1094

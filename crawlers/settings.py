@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for crawler project
+# Scrapy settings for crawlers project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -10,10 +10,10 @@
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 import random
 
-BOT_NAME = 'crawler'
+BOT_NAME = 'crawlers'
 
-SPIDER_MODULES = ['crawler.spiders']
-NEWSPIDER_MODULE = 'crawler.spiders'
+SPIDER_MODULES = ['crawlers.spiders']
+NEWSPIDER_MODULE = 'crawlers.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -55,8 +55,8 @@ ROBOTSTXT_OBEY = False
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    # 'crawler.middlewares.CrawlerDownloaderMiddleware': 543,
-    'crawler.middlewares.UserAgentMiddleware': 400,
-    'crawler.middlewares.RandomDelayDwnldMiddleware': 420,
+    'crawlers.middlewares.UserAgentMiddleware': 400,
+    'crawlers.middlewares.RandomDelayDwnldMiddleware': 420,
 }
 
 # Enable or disable extensions
@@ -69,7 +69,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    # 'crawler.pipelines.CrawlerPipeline': 300,
-    'crawler.pipelines.LtImagePipeline': 500,
+    'crawlers.pipelines.LtImagePipeline': 500,
 }
 IMAGES_STORE = "/home/andy/workspace/picsfrmnet"
 # Enable and configure the AutoThrottle extension (disabled by default)

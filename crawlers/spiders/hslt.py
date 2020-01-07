@@ -17,7 +17,7 @@ class HsltSpider(scrapy.Spider):
     cntoflstpgcrawled = 0
 
     custom_settings={
-        "IMAGES_STORE" : "/home/andy/workspace/picsfrmnethslt_temp"
+        "IMAGES_STORE" : "/home/andy/workspace/picsfrmnethslt_temp",
     }
 
     def start_requests(self):
