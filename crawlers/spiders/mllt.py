@@ -17,7 +17,7 @@ class MlltSpider(scrapy.Spider):
     cntoflstpgcrawled = 0
 
     custom_settings = {
-        "IMAGES_STORE" : "/home/andy/workspace/picsfrmnetmllt_temp",
+        "IMAGES_STORE" : "/home/andy/workspace/picsfrmnet/mllt",
         "RANDOM_DELAY" : 3,
     }
 
