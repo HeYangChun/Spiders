@@ -9,15 +9,17 @@ if [ $cnt -gt 1 ];then
 fi
 
 echo "$(date)    starting scrapy...">>${logfile}
-cd /home/andy/workspace/crawler
+cd /home/andy/workspace/crawlers
 
-echo "$(date)    start crawl hslt..." >>${logfile}
-scrapy crawl hslt
+#echo "$(date)    start crawl hslt..." >>${logfile}
+#scrapy crawl hslt
 
-echo "$(date)    start crawl mllt..." >>${logfile}
-scrapy crawl mllt
+#echo "$(date)    start crawl mllt..." >>${logfile}
+#scrapy crawl mllt
 
-echo "$(date)    start crawl pacific..." >>${logfile}
-scrapy crawl tpysylt
+#echo "$(date)    start crawl pacific..." >>${logfile}
+#scrapy crawl tpysylt
+
+python startall.py
 
 echo "$(date)    completed." >>${logfile}
