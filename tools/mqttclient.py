@@ -90,18 +90,12 @@ if __name__ == "__main__":
     
     if len(sys.argv) >= 4:
         if sys.argv[1] == '-s':
-            if len(sys.argv) >= 2:
-                client = MqttClient("192.168.0.10")
-                client.subscribeAndWaitMsg(sys.argv[2],int(sys.argv[3]))
-            else:
-                print("Please input topic")
+            client = MqttClient("192.168.0.10")
+            client.subscribeAndWaitMsg(sys.argv[2],int(sys.argv[3]))
                 
         elif sys.argv[1] == '-p':
-            if len(sys.argv) >= 4:
-                client = MqttClient("192.168.0.10")
-                client.publishMsg(sys.argv[2],sys.argv[3])
-            else:
-                print("please input topic and payload")
+            client = MqttClient("192.168.0.10")
+            client.publishMsg(sys.argv[2],sys.argv[3])
     else:
         print("""
         Usage:    mqttclient -s topic timeout
