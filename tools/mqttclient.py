@@ -8,10 +8,10 @@ class MqttClient:
     MqttClient is a class which can be used to test MQTT quickly
     """
         
-    def __init__(self,host,port=1883):
+    def __init__(self,host,clientid="AndyUsed",port=1883):
         self.__host = host
         self.__port = port
-        self.__client = mqtt.Client()
+        self.__client = mqtt.Client(clientid)
         self.__client.on_connect = self.__on_connnect
         self.__client.on_message = self.__on_message
         self.__client.on_disconnect = self.__on_disconnect
@@ -44,7 +44,11 @@ class MqttClient:
     def subscribeAndWaitMsg(self,topic,timeout=60,qos=2):
         """
         subscribe a topic, and wait for a timeout,if message of topic received, show it
+        server(emqx) should set:
+           allow_anonymous = true
+           emqx_ctl users add andy andy
         """        
+        self.__client.username_pw_set("andy","andy")
         self.__client.connect(self.__host, self.__port, 5)
         
         tmBgn=time.time()
@@ -68,6 +72,7 @@ class MqttClient:
         """
         Publish a message with topic and payload, then quit.
         """
+        self.__client.username_pw_set("andy","andy")
         self.__client.connect(self.__host, self.__port, 5)
         bMsgPublished=False
         tmBgn=time.time()
@@ -90,11 +95,11 @@ if __name__ == "__main__":
     
     if len(sys.argv) >= 4:
         if sys.argv[1] == '-s':
-            client = MqttClient("192.168.0.10")
+            client = MqttClient("192.168.0.10",clientid = "andyused" + sys.argv[1] )
             client.subscribeAndWaitMsg(sys.argv[2],int(sys.argv[3]))
                 
         elif sys.argv[1] == '-p':
-            client = MqttClient("192.168.0.10")
+            client = MqttClient("192.168.0.10",clientid = "andyused" + sys.argv[1] )
             client.publishMsg(sys.argv[2],sys.argv[3])
     else:
         print("""
