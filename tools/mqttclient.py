@@ -97,12 +97,14 @@ if __name__ == "__main__":
         if sys.argv[1] == '-s':
             client = MqttClient("192.168.0.10",clientid = "andyused" + sys.argv[1] )
             client.subscribeAndWaitMsg(sys.argv[2],int(sys.argv[3]))
+            exit()
                 
         elif sys.argv[1] == '-p':
             client = MqttClient("192.168.0.10",clientid = "andyused" + sys.argv[1] )
             client.publishMsg(sys.argv[2],sys.argv[3])
-    else:
-        print("""
-        Usage:    mqttclient -s topic timeout
-                  mqttclient -p topic payload
-        """)
+            exit()
+    
+    print("""
+    Usage:    mqttclient -s topic timeout
+              mqttclient -p topic payload
+    """)
